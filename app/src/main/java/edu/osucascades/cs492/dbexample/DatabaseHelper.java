@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "student_database.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
     private static final String TABLE_STUDENTS = "students";
     private static final String KEY_ID = "id";
     private static final String KEY_FIRSTNAME = "fname";
@@ -35,8 +35,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
 
         db.execSQL(CREATE_TABLE_STUDENTS);
+
+        values.put(KEY_FIRSTNAME, "jesse");
+        db.insert(TABLE_STUDENTS, null, values);
+        values.put(KEY_FIRSTNAME, "yong");
+        db.insert(TABLE_STUDENTS, null, values);
+        values.put(KEY_FIRSTNAME, "jill");
+        db.insert(TABLE_STUDENTS, null, values);
+        values.put(KEY_FIRSTNAME, "patrick");
+        db.insert(TABLE_STUDENTS, null, values);
     }
 
     @Override
