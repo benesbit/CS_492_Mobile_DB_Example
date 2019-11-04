@@ -13,10 +13,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnStore, btnGetall;
-    private EditText etname;
+    private Button btnStore;
+    private Button btnGetAll;
+    private EditText enterName;
     private DatabaseHelper databaseHelper;
-    private TextView tvnames;
+    private TextView listOfNames;
     private ArrayList<String> arrayList;
 
     @Override
@@ -25,31 +26,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         databaseHelper = new DatabaseHelper(this);
-        tvnames = findViewById(R.id.tvnames);
+        listOfNames = findViewById(R.id.listOfNames);
 
-        btnStore = findViewById(R.id.btnstore);
-        btnGetall = findViewById(R.id.btnget);
-        etname = findViewById(R.id.etname);
+        btnStore = findViewById(R.id.buttonstore);
+        btnGetAll = findViewById(R.id.buttonget);
+        enterName = findViewById(R.id.entername);
 
         btnStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelper.addStudentDetail(etname.getText().toString());
-                etname.setText("");
+                databaseHelper.addStudentDetail(enterName.getText().toString());
+                enterName.setText("");
                 Toast.makeText(MainActivity.this, "Stored Successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        btnGetall.setOnClickListener(new View.OnClickListener() {
+        btnGetAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 arrayList = databaseHelper.getAllStudentsList();
-                tvnames.setText("");
+                listOfNames.setText("");
 
                 for (int i = 0; i < arrayList.size(); i++){
-                    //tvnames.setText(tvnames.getText().toString() + ", " + arrayList.get(i));
+                    //listOfNames.setText(listOfNames.getText().toString() + ", " + arrayList.get(i));
 
-                    tvnames.setText(arrayList.get(i) + "\n" + tvnames.getText().toString());
+                    listOfNames.setText(arrayList.get(i) + "\n" + listOfNames.getText().toString());
                 }
             }
         });
